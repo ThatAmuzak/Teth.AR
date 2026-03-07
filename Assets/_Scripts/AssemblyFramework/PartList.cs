@@ -1,7 +1,11 @@
-﻿namespace _Scripts.AssemblyFramework
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+namespace AssemblyFramework
 {
-    public class PartList
+    [CreateAssetMenu]
+    public class TagRegistry : ScriptableObject
     {
-        
+        public List<string> tags;
     }
 }
