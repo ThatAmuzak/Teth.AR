@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.abzorba.artificetoolkit": "https://github.com/AbZorbaGames/artificetoolkit.git",
     "com.meta.xr.sdk.all": "85.0.0",
     "com.meta.xr.sdk.avatars": "40.0.1",
     "com.meta.xr.sdk.avatars.sample.assets": "40.0.1",
