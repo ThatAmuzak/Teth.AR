@@ -7,6 +7,8 @@ namespace AssemblyFramework
 {
     public class AssemblyPart : MonoBehaviour
     {
+        [SerializeField] private Material previewMat;
+        
         [Header("This Part")]
         public TagReference partTag;
         
@@ -21,6 +23,18 @@ namespace AssemblyFramework
         [Button(true, "zoneType")]
         public void AddSnapZone(SnapZoneData data)
         {
+            data.partData = childParts.Find(x =>
+                x.partTag.Value == data.partToAccept.Value &&
+                x.partTag.registry == data.partToAccept.registry
+            );
+            data.previewMat = previewMat;
+            
+            if (data.partData == null)
+            {
+                Debug.LogError("Populate the intended part's data");
+                return;
+            }
+            
             snapZones.Clear();
             foreach (Transform child in transform)
             {
@@ -31,7 +45,7 @@ namespace AssemblyFramework
             }
             SnapZone snapZone = new GameObject("SnapZone").AddComponent<SnapZone>();
             snapZone.transform.SetParent(transform);
-            snapZone.Init(data );
+            snapZone.Init(data);
         }
         
     }
@@ -49,6 +63,8 @@ namespace AssemblyFramework
     {
         public ZoneType zoneType;
         public TagReference partToAccept;
+        [HideInInspector] public ChildPart partData = null;
+        [HideInInspector] public Material previewMat;
     }
     
     [Serializable]
