@@ -30,6 +30,14 @@ MonoBehaviour:
       Value: 1
     - Key: PassthroughStreaming
       Value: 1
+    - Key: AssemblyStreamingAgoraStreaming
+      Value: 1
+    - Key: EmptyScene
+      Value: 1
+    - Key: Main
+      Value: 1
+    - Key: 0 (4)
+      Value: 1
   validatorTypesMap:
     list:
     - Key: Artifice_ValidatorModule_ScriptableObject_NullReferenceChecker

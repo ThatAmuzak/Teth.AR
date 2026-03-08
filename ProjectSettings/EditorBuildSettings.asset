@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/AssemblyStreaming.unity
     guid: 5fc13b09b5e669146bfa5c60a6669603
+  - enabled: 1
+    path: Assets/_Scenes/AssemblyStreamingAgoraStreaming.unity
+    guid: 9c536022c427b824ebe781ee4f5b5cd6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: d5717e1745ab7fd48a14be08687c5d56, type: 2}
