@@ -1,17 +1,22 @@
 using System;
 using System.Collections.Generic;
 using ArtificeToolkit.Attributes;
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
 namespace AssemblyFramework
 {
     public class AssemblyPart : MonoBehaviour
     {
-        [SerializeField] private Material previewMat;
+        public bool IsGrabbed => isGrabbed;
         
+        [SerializeField] private Material previewMat;
+        [SerializeField] HandGrabInteractable grabbable;
         [Header("This Part")]
         public TagReference partTag;
         
+        [SerializeField] private bool isGrabbed = false;
         [Header("Relationships")]
         [SerializeField] private List<ChildPart> childParts;
         
@@ -20,6 +25,27 @@ namespace AssemblyFramework
         
         [Header("Create New Snap Zones")]
         [SerializeField] private SnapZoneData zoneType;
+        
+        
+        private void Start()
+        {
+            grabbable = transform.GetComponentInChildren<HandGrabInteractable>();
+            grabbable.WhenStateChanged += GrabStateChanged;
+        }
+
+        private void GrabStateChanged(InteractableStateChangeArgs arg)
+        {
+            if (arg.NewState == InteractableState.Select)
+            {
+                isGrabbed = true;
+            }
+            else
+            {
+                isGrabbed = false;
+            }
+        }
+
+        
         [Button(true, "zoneType")]
         public void AddSnapZone(SnapZoneData data)
         {
@@ -47,8 +73,40 @@ namespace AssemblyFramework
             snapZone.transform.SetParent(transform);
             snapZone.Init(data);
         }
-        
+
+        [Button]
+        public void UpdateSnapZone()
+        {
+            snapZones.Clear();
+            foreach (Transform child in transform)
+            {
+                if (child.TryGetComponent(out SnapZone _snapZone))
+                {
+                    snapZones.Add(_snapZone);
+                }
+            }
+            
+            foreach (ChildPart childPart in childParts)
+            {
+                foreach (SnapZone zone in snapZones)
+                {
+                    if (zone.Data.partToAccept.Value == childPart.partTag.Value &&
+                        zone.Data.partToAccept.registry == childPart.partTag.registry)
+                    {
+                        zone.Data.partData.position = childPart.position;
+                        zone.Data.partData.rotation = childPart.rotation;
+
+                        // // update transform preview if needed
+                        // zone.transform.localPosition = childPart.position;
+                        // zone.transform.localRotation = childPart.rotation;
+
+                        break;
+                    }
+                }
+            }
+        }
     }
+
     
     [Serializable]
     public class ChildPart

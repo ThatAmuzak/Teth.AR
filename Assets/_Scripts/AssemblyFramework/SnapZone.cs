@@ -6,6 +6,9 @@ namespace AssemblyFramework
 {
     public class SnapZone : MonoBehaviour
     {
+        
+        public SnapZoneData Data => data;
+        
         [SerializeField] private SnapZoneData data;
         public Material previewMat;
         GameObject duplicate;
@@ -38,6 +41,7 @@ namespace AssemblyFramework
             Debug.Log(data.partData.rotation);
         }
 
+        
         private void OnTriggerEnter(Collider trigger)
         {
             if(trigger.TryGetComponent(out AssemblyPart part))
@@ -65,7 +69,20 @@ namespace AssemblyFramework
                     targetLossy.y / parentLossy.y,
                     targetLossy.z / parentLossy.z
                 );
-                
+            }
+        }
+
+        private void OnTriggerStay(Collider trigger)
+        {
+            if (trigger.TryGetComponent(out AssemblyPart part))
+            {
+                if (part.IsGrabbed == false)
+                {
+                    part.transform.position = transform.TransformPoint(data.partData.position);
+                    part.transform.rotation = transform.rotation * data.partData.rotation;
+                    
+                    Destroy(duplicate);
+                }
             }
         }
 
