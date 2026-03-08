@@ -78,3 +78,10 @@ crashlytics-build.properties
 /.vscode
 Assets/Photon
 Assets/Photon.meta
+Assets/Agora-RTC-Plugin
+Assets/Agora-RTC-Plugin.meta
+Assets/Resources/Secrets
+.utmp
+Assets/Samples
+Assets/Oculus
+Assets/StreamingAssets
