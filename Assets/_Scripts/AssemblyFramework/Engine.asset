@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Engine
   m_EditorClassIdentifier: Assembly-CSharp::AssemblyFramework.TagRegistry
   tags:
-  - Nuts
+  - Nut
   - Bolt
-  - Lid
-  - Piston
+  - StandType1
+  - StandType2
+  - Tray
+  - Wheel

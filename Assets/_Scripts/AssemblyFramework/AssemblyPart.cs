@@ -10,23 +10,23 @@ namespace AssemblyFramework
     public class AssemblyPart : MonoBehaviour
     {
         public bool IsGrabbed => isGrabbed;
-        
+
         [SerializeField] private Material previewMat;
         [SerializeField] HandGrabInteractable grabbable;
         [Header("This Part")]
         public TagReference partTag;
-        
+
         [SerializeField] private bool isGrabbed = false;
         [Header("Relationships")]
         [SerializeField] private List<ChildPart> childParts;
-        
+
         [Header("Snap Zones")]
         [SerializeField] private List<SnapZone> snapZones;
-        
+
         [Header("Create New Snap Zones")]
         [SerializeField] private SnapZoneData zoneType;
-        
-        
+
+
         private void Start()
         {
             grabbable = transform.GetComponentInChildren<HandGrabInteractable>();
@@ -45,22 +45,22 @@ namespace AssemblyFramework
             }
         }
 
-        
-        [Button(true, "zoneType")]
-        public void AddSnapZone(SnapZoneData data)
+        [Button]
+        public void AddSnapZone()
         {
+            SnapZoneData data = zoneType;
             data.partData = childParts.Find(x =>
                 x.partTag.Value == data.partToAccept.Value &&
                 x.partTag.registry == data.partToAccept.registry
             );
             data.previewMat = previewMat;
-            
+
             if (data.partData == null)
             {
                 Debug.LogError("Populate the intended part's data");
                 return;
             }
-            
+
             snapZones.Clear();
             foreach (Transform child in transform)
             {
@@ -85,7 +85,7 @@ namespace AssemblyFramework
                     snapZones.Add(_snapZone);
                 }
             }
-            
+
             foreach (ChildPart childPart in childParts)
             {
                 foreach (SnapZone zone in snapZones)
@@ -107,7 +107,7 @@ namespace AssemblyFramework
         }
     }
 
-    
+
     [Serializable]
     public class ChildPart
     {
@@ -124,7 +124,7 @@ namespace AssemblyFramework
         [HideInInspector] public ChildPart partData = null;
         [HideInInspector] public Material previewMat;
     }
-    
+
     [Serializable]
     public enum ZoneType
     {
@@ -132,5 +132,5 @@ namespace AssemblyFramework
         Cylinder = 1,
         Sphere = 2
     }
-    
+
 }
