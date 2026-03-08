@@ -1714,7 +1714,7 @@ MonoBehaviour:
   requestBodyTrackingPermissionOnStartup: 0
   requestFaceTrackingPermissionOnStartup: 0
   requestEyeTrackingPermissionOnStartup: 0
-  requestScenePermissionOnStartup: 0
+  requestScenePermissionOnStartup: 1
   requestRecordAudioPermissionOnStartup: 0
   requestPassthroughCameraAccessPermissionOnStartup: 0
   _localDimming: 1
@@ -2582,13 +2582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6937544d08e2ba34da6ff4ab90cbfd84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bodyTrackingMode: 0
-  _useAsyncBodySolver: 0
-  _enableHipLock: 0
-  _ovrCameraRig: {fileID: 0}
-  _debugDrawTrackingLocations: 0
-  HeadsetInputSimulator: {fileID: 0}
-  disableSampleSceneLocomotion: 0
 --- !u!114 &1925391179
 MonoBehaviour:
   m_ObjectHideFlags: 0
