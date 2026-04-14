@@ -2,6 +2,9 @@
 
 Remote mixed reality training system for spatial instruction and equipment assembly.
 
+[<img src="https://img.youtube.com/vi/RqbDehOqA6Q/hqdefault.jpg" width="600" height="600"
+/>](https://www.youtube.com/embed/RqbDehOqA6Q)
+
 ## Overview
 
 Teth.AR enables synchronized remote training across passthrough mixed reality (MR) and virtual reality (VR) environments. A trainee works in a passthrough MR workspace while a remote trainer operates from a VR environment. Both interact with the same digital objects and assembly steps, with trainer demonstrations visible directly in the trainee's workspace.
