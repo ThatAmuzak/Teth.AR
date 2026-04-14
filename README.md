@@ -2,6 +2,7 @@
 
 Remote mixed reality training system for spatial instruction and equipment assembly.
 
+## Video Demo
 [<img src="https://img.youtube.com/vi/RqbDehOqA6Q/hqdefault.jpg" width="600" height="600"
 />](https://www.youtube.com/embed/RqbDehOqA6Q)
 
